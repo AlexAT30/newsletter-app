@@ -4,7 +4,7 @@ from tags.models import Tag
 from tags.serializers import TagSerializer, CrearTagSerializer, DetalleTagSerializer
 
 
-class NewslettersViewSet(ModelViewSet):
+class TagsViewSet(ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
 
