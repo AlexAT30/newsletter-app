@@ -1,21 +1,20 @@
+from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.viewsets import ModelViewSet
-
 from tags.models import Tag
-from tags.serializers import TagSerializer, CrearTagSerializer, DetalleTagSerializer
-
+from tags.serializers import CreateTagSerializer, TagSerializer
 
 class TagsViewSet(ModelViewSet):
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
+  queryset = Tag.objects.all()
+  serializer_class = CreateTagSerializer
 
-    def get_serializer_class(self):
-        if self.action == 'list' and not self.request.user.is_staff:
-            return TagSerializer
+  def get_serializer_class(self):
+    if self.action == 'list' or self.action == 'retrieve':
+      return TagSerializer
+    return self.serializer_class
 
-        if self.request.method == 'POST':
-            return CrearTagSerializer
-
-        if self.action == 'retrieve' and self.request.user.is_staff:
-            return DetalleTagSerializer
-
-        return TagSerializer
+  def get_permissions(self):
+    if self.action == 'create' or self.action == 'update' or self.action == 'parcial_update' or 'destroy':
+      permission_classes = [IsAdminUser]
+    else:
+      permission_classes = [AllowAny]
+    return [permission() for permission in permission_classes]

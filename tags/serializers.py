@@ -3,22 +3,15 @@ from rest_framework.serializers import ModelSerializer
 from tags.models import Tag
 
 
-# get (list) and not admin
+# default
 class TagSerializer(ModelSerializer):
-    class Meta:
-        model = Tag
-        fields = ['name']
+  class Meta:
+    model = Tag
+    fields = ['id', 'name', 'slug', 'created_at']
 
+# create
+class CreateTagSerializer(ModelSerializer):
+  class Meta:
+    model = Tag
+    fields = ['name', 'slug']
 
-# post
-class CrearTagSerializer(ModelSerializer):
-    class Meta:
-        model = Tag
-        fields = '__all__'
-
-
-# retrieve and admin /
-class DetalleTagSerializer(ModelSerializer):
-    class Meta:
-        model = Tag
-        fields = '__all__'

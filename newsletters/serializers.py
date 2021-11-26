@@ -1,24 +1,20 @@
 from rest_framework.serializers import ModelSerializer
-
 from newsletters.models import Newsletter
+from tags.serializers import TagSerializer
+from users.serializers import MinimalUserSerializer, UserSerializer
 
 
-# get (list) and not admin
+# Default
 class NewsletterSerializer(ModelSerializer):
-    class Meta:
-        model = Newsletter
-        fields = ['name', 'img']
+  tags = TagSerializer(many=True)
+  created_by = MinimalUserSerializer()
+  likes = MinimalUserSerializer(many=True)
+  class Meta:
+    model = Newsletter
+    fields = ['id', 'name', 'image_url', 'description', 'target', 'likes', 'created_by', 'tags']
 
-
-# post
-class CrearNewsletterSerializer(ModelSerializer):
-    class Meta:
-        model = Newsletter
-        fields = '__all__'
-
-
-# retrieve and admin /
-class DetalleNewsletterSerializer(ModelSerializer):
-    class Meta:
-        model = Newsletter
-        fields = '__all__'
+# Create
+class CreateNewsletterSerializer(ModelSerializer):
+  class Meta:
+    model = Newsletter
+    fields = ['name', 'image_url', 'description', 'target', 'created_by', 'likes']
