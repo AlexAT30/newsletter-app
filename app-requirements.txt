@@ -1,0 +1,7 @@
+1. Como administrador quiero iniciar sesión para crear el primer boletín (X)
+2. Como administrador quiero poder ver la lista de los boletines creados y poder filtrar por categoría 
+3. Como administrador quiero poder invitar a nuevos administradores para editar los boletines (X)
+4. Como usuario quiero poder suscribirme a un boletín para recibir noticias relacionadas en mi correo. (x)
+5. Como usuario quiero poder votar por un boletín para que se haga el lanzamiento de este boletín. (X)
+6. Como usuario quiero iniciar sesión para poder ver los boletines a los que estoy suscrito. 
+7. Como usuario quiero poder darme de baja de los boletines para dejar de recibir noticias. (X)
